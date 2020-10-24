@@ -1,6 +1,9 @@
+mod client;
+
 #[async_std::main]
 async fn main() -> surf::Result<()> {
-    let mut res = surf::get("https://bradfitzwater.com").await?;
-    dbg!(res.body_string().await?);
+    let uri = String::from("https://bradfitzwater.com");
+    let res = client::download(uri).await?;
+    dbg!(res);
     Ok(())
 }
